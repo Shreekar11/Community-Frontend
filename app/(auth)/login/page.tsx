@@ -1,7 +1,9 @@
 "use client";
 
-import { LoginForm } from "@/type";
+import { toast } from "sonner";
 import { useState } from "react";
+import { LoginForm } from "@/type";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
@@ -19,8 +21,6 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 
 const BASEURL = process.env.NEXT_PUBLIC_BASEURL;
 
@@ -52,7 +52,9 @@ const page = () => {
         <div className="lg:border-r lg:border-r-[#aaafbc] lg:pr-10">
           <CardHeader className="mb-5">
             <CardTitle className="mb-2 text-center">Login</CardTitle>
-            <CardDescription>Welcome back to community!</CardDescription>
+            <CardDescription>
+              Welcome back to <span className="text-[#7c87ff]">community</span>!
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form>
@@ -88,16 +90,16 @@ const page = () => {
               </div>
             </form>
           </CardContent>
-          <CardFooter className="flex flex-col space-y-4 justify-center items-center">
+          <CardFooter className="flex flex-col mt-2 space-y-4 justify-center items-center">
             <Button
               onClick={handleSubmit}
-              className="w-1/2 border border-gray-400 rounded-xl hover:bg-[#5865F2]"
+              className="w-full rounded-xl bg-[#5865F2] hover:bg-[#434fd0]"
             >
               Login
             </Button>
             <p className="text-xs">
               Don't have an account?{" "}
-              <span className="text-[#7884ff]">
+              <span className="text-[#7c87ff]">
                 <Link href="/register">Register</Link>
               </span>
             </p>

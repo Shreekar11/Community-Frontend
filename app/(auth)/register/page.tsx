@@ -1,7 +1,9 @@
 "use client";
 
-import { RegisterForm } from "@/type";
+import { toast } from "sonner";
 import { useState } from "react";
+import { RegisterForm } from "@/type";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
@@ -19,8 +21,6 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 
 const BASEURL = process.env.NEXT_PUBLIC_BASEURL;
 
@@ -51,11 +51,11 @@ const page = () => {
   return (
     <main className="bg-[#5865F2] flex justify-center items-center h-screen">
       <Card className="w-1/2 p-2 lg:p-8 rounded-xl bg-[#3f4146] text-white border border-[#313338] flex justify-center items-center">
-        <div className="lg:border-r lg:border-r-[#aaafbc] lg:pr-10">
-          <CardHeader className="mb-5">
-            <CardTitle className="mb-2 text-center">Register</CardTitle>
+        <div className="lg:border-r lg:border-r-[#aaafbc] lg:pr-8">
+          <CardHeader className="mb-5 flex justify-center items-center ">
+            <CardTitle className="mb-2">Register</CardTitle>
             <CardDescription>
-              Create an Account to join communities!
+              Create an Account to join <span className="text-[#7c87ff]">communities</span>!
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -108,19 +108,19 @@ const page = () => {
           <CardFooter className="flex flex-col space-y-4 justify-center items-center">
             <Button
               onClick={handleSubmit}
-              className="w-1/2 border border-gray-400 rounded-xl hover:bg-[#5865F2]"
+              className="w-full mt-2 rounded-xl bg-[#5865F2] hover:bg-[#434fd0]"
             >
               Register
             </Button>
             <p className="text-xs">
               Already have an account?{" "}
-              <span className="text-[#7884ff]">
+              <span className="text-[#7c87ff]">
                 <Link href="/login">Login</Link>
               </span>
             </p>
           </CardFooter>
         </div>
-        <div className="md:pl-10 hidden lg:block">
+        <div className="md:pl-8 hidden lg:block">
           <Image
             src={loginImage}
             alt="login-image"
