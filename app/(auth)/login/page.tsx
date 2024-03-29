@@ -21,23 +21,34 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/context/Auth";
 
 const BASEURL = process.env.NEXT_PUBLIC_BASEURL;
 
 const page = () => {
   const router = useRouter();
+  const { setUserAuthInfo } = useAuth();
   const [userData, setUserData] = useState<LoginForm>({
     email: "",
     password: "",
   });
 
   const handleSubmit = async () => {
+    const email = userData.email;
+    const password = userData.password;
+
+    if (!email || !password) {
+      toast.error("All fields required");
+      return;
+    }
+
     try {
       const response = await axios.post(`${BASEURL}/v1/auth/signin`, {
         email: userData.email,
         password: userData.password,
       });
       toast.success(response.data.message);
+      setUserAuthInfo(response.data);
       console.log("response:", response);
       router.push("/");
     } catch (err: any) {
@@ -48,12 +59,13 @@ const page = () => {
 
   return (
     <main className="bg-[#5865F2] flex justify-center items-center h-screen">
-      <Card className="w-1/2 p-2 lg:p-8 rounded-xl bg-[#3f4146] text-white border border-[#313338] flex justify-center items-center">
-        <div className="lg:border-r lg:border-r-[#aaafbc] lg:pr-10">
-          <CardHeader className="mb-5">
-            <CardTitle className="mb-2 text-center">Login</CardTitle>
-            <CardDescription>
-              Welcome back to <span className="text-[#7c87ff]">community</span>!
+      <Card className="w-3/4 sm:w-1/2 p-2 lg:p-8 rounded-xl bg-[#3f4146] text-white border border-[#313338] flex justify-center items-center">
+        <div className="lg:border-r lg:border-r-[#aaafbc] lg:pr-8">
+        <CardHeader className="mb-5 flex justify-center items-center ">
+            <CardTitle className="mb-2">Login</CardTitle>
+            <CardDescription className="text-sm text-center">
+              Welcome back to {" "}
+              <span className="text-[#7c87ff]">communities</span>!
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -105,14 +117,17 @@ const page = () => {
             </p>
           </CardFooter>
         </div>
-        <div className="md:pl-10 hidden lg:block">
-          <Image
-            src={loginImage}
-            alt="login-image"
-            height={300}
-            width={300}
-            className=" border rounded-xl"
-          />
+        <div className="lg:pl-8 hidden lg:block">
+        <div className="space-y-6 flex flex-col justify-center items-center">
+            <div className="text-center font-bold text-3xl ">Join your <span className="text-[#7c87ff]">Communities</span>!</div>
+            <Image
+              src={loginImage}
+              alt="login-image"
+              height={300}
+              width={300}
+              className=" border rounded-xl"
+            />
+          </div>
         </div>
       </Card>
     </main>

@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
-import loginImage from "@/public/img/login/login.png";
+import registerImage from "@/public/img/login/register.png";
 
 // ui components
 import {
@@ -33,6 +33,15 @@ const page = () => {
   });
 
   const handleSubmit = async () => {
+    const name = userData.name;
+    const email = userData.email;
+    const password = userData.password;
+
+    if (!name || !email || !password) {
+      toast.error("All fields required");
+      return;
+    }
+
     try {
       const response = await axios.post(`${BASEURL}/v1/auth/signup`, {
         name: userData.name,
@@ -50,12 +59,13 @@ const page = () => {
 
   return (
     <main className="bg-[#5865F2] flex justify-center items-center h-screen">
-      <Card className="w-1/2 p-2 lg:p-8 rounded-xl bg-[#3f4146] text-white border border-[#313338] flex justify-center items-center">
+      <Card className="w-3/4 sm:w-1/2 p-2 lg:p-8 rounded-xl bg-[#3f4146] text-white border border-[#313338] flex justify-center items-center">
         <div className="lg:border-r lg:border-r-[#aaafbc] lg:pr-8">
           <CardHeader className="mb-5 flex justify-center items-center ">
             <CardTitle className="mb-2">Register</CardTitle>
-            <CardDescription>
-              Create an Account to join <span className="text-[#7c87ff]">communities</span>!
+            <CardDescription className="text-sm text-center">
+              Create an Account to join{" "}
+              <span className="text-[#7c87ff]">communities</span>!
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -121,13 +131,16 @@ const page = () => {
           </CardFooter>
         </div>
         <div className="md:pl-8 hidden lg:block">
-          <Image
-            src={loginImage}
-            alt="login-image"
-            height={300}
-            width={300}
-            className=" border rounded-xl"
-          />
+          <div className="space-y-6 flex flex-col justify-center items-center">
+            <div className="text-center font-bold text-3xl ">Build & Run <span className="text-[#7c87ff]">Communities</span></div>
+            <Image
+              src={registerImage}
+              alt="register-image"
+              height={300}
+              width={300}
+              className=" border rounded-xl"
+            />
+          </div>
         </div>
       </Card>
     </main>
