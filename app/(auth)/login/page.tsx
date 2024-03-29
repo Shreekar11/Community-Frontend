@@ -3,7 +3,12 @@
 import { toast } from "sonner";
 import { useState } from "react";
 import { LoginForm } from "@/type";
+import { getAuth } from "firebase/auth";
+import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
+import { signInWithPopup } from "firebase/auth";
+import { githubProvider, googleProvider } from "@/lib/firebase";
+import { IoLogoGithub } from "react-icons/io5";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
@@ -26,6 +31,7 @@ import { useAuth } from "@/context/Auth";
 const BASEURL = process.env.NEXT_PUBLIC_BASEURL;
 
 const page = () => {
+  const auth = getAuth();
   const router = useRouter();
   const { setUserAuthInfo } = useAuth();
   const [userData, setUserData] = useState<LoginForm>({
@@ -57,21 +63,41 @@ const page = () => {
     }
   };
 
+  const handleGoogleSubmit = async () => {
+    try {
+      const response = await signInWithPopup(auth, googleProvider);
+      toast.success("User sign in Successfully");
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleGithubSubmit = async () => {
+    try {
+      const response = await signInWithPopup(auth, githubProvider);
+      toast.success("User sign in Successfully");
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <main className="bg-[#5865F2] flex justify-center items-center h-screen">
       <Card className="w-3/4 sm:w-1/2 p-2 lg:p-8 rounded-xl bg-[#3f4146] text-white border border-[#313338] flex justify-center items-center">
         <div className="lg:border-r lg:border-r-[#aaafbc] lg:pr-8">
-        <CardHeader className="mb-5 flex justify-center items-center ">
+          <CardHeader className="lg:mb-5 flex justify-center items-center ">
             <CardTitle className="mb-2">Login</CardTitle>
             <CardDescription className="text-sm text-center">
-              Welcome back to {" "}
+              Welcome back to{" "}
               <span className="text-[#7c87ff]">communities</span>!
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form>
               <div className="grid w-full items-center gap-4">
-                <div className="flex flex-col space-y-4">
+                <div className="flex flex-col space-y-2">
                   <div className="">
                     <Label htmlFor="name">Email Address</Label>
                     <Input
@@ -102,7 +128,7 @@ const page = () => {
               </div>
             </form>
           </CardContent>
-          <CardFooter className="flex flex-col mt-2 space-y-4 justify-center items-center">
+          <CardFooter className="lg:mb-4 flex flex-col space-y-2 justify-center items-center">
             <Button
               onClick={handleSubmit}
               className="w-full rounded-xl bg-[#5865F2] hover:bg-[#434fd0]"
@@ -116,10 +142,33 @@ const page = () => {
               </span>
             </p>
           </CardFooter>
+          <div className="flex flex-col justify-center items-center space-y-4 pb-4">
+            <div className="relative w-[80%]">
+              <FcGoogle className="h-6 w-6 absolute top-[0.50rem] left-5 rounded-full" />
+              <Button
+                onClick={handleGoogleSubmit}
+                className="w-full rounded-xl text-xs text-black pr-1 bg-[#ffffff] hover:bg-[#f5f5f5] font-semibold"
+              >
+                Continue with Google
+              </Button>
+            </div>
+            <div className="relative w-[80%]">
+              <IoLogoGithub className="h-6 w-6 absolute top-[0.50rem] left-5 bg-black rounded-full" />
+              <Button
+                onClick={handleGithubSubmit}
+                className="w-full rounded-xl text-xs text-black pr-1 bg-[#ffffff] hover:bg-[#f5f5f5] font-semibold"
+              >
+                Continue with Github
+              </Button>
+            </div>
+          </div>
         </div>
         <div className="lg:pl-8 hidden lg:block">
-        <div className="space-y-6 flex flex-col justify-center items-center">
-            <div className="text-center font-bold text-3xl ">Join your <span className="text-[#7c87ff]">Communities</span>!</div>
+          <div className="space-y-6 flex flex-col justify-center items-center">
+            <div className="text-center flex flex-col justify-center items-center font-bold text-3xl ">
+              {" "}
+              Explore<span className="text-[#7c87ff]">Communities!</span>
+            </div>
             <Image
               src={loginImage}
               alt="login-image"

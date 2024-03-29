@@ -17,6 +17,14 @@ export type UserData = {
   expiresAt: string;
 };
 
+export type GoogleCredential = {
+  accesstoken: string;
+  user: {
+    name: string;
+    email: string;
+  };
+};
+
 export type UserCredential = {
   token: string;
   user: UserData;

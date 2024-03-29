@@ -21,7 +21,14 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="">
           <AuthProvider>{children}</AuthProvider>
-          <Toaster position="top-right" richColors />
+          <Toaster
+            position="top-right"
+            richColors
+            closeButton
+            duration={2000}
+            pauseWhenPageIsHidden
+            visibleToasts={1}
+          />
         </div>
       </body>
     </html>
