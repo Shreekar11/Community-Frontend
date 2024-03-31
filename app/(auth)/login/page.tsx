@@ -27,6 +27,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/Auth";
+import { Separator } from "@/components/ui/separator";
 
 const BASEURL = process.env.NEXT_PUBLIC_BASEURL;
 
@@ -128,7 +129,7 @@ const page = () => {
               </div>
             </form>
           </CardContent>
-          <CardFooter className="lg:mb-4 flex flex-col space-y-2 justify-center items-center">
+          <CardFooter className=" flex flex-col space-y-2 justify-center items-center">
             <Button
               onClick={handleSubmit}
               className="w-full rounded-xl bg-[#5865F2] hover:bg-[#434fd0]"
@@ -142,6 +143,7 @@ const page = () => {
               </span>
             </p>
           </CardFooter>
+          <Separator className="h-[1px] lg:mb-6 bg-[#aaafbc] rounded-md w-[13rem] mx-auto" />
           <div className="flex flex-col justify-center items-center space-y-4 pb-4">
             <div className="relative w-[80%]">
               <FcGoogle className="h-6 w-6 absolute top-[0.50rem] left-5 rounded-full" />

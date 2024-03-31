@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <main className="flex">
           <AuthProvider>
-            <div className=" bg-[#202123] p-4 max-w-xs min-h-screen md:min-w-[20rem]">
+            <div className=" bg-[#2a2b2f] max-w-xs min-h-screen md:min-w-[20rem]">
               <Sidebar />
             </div>
             <div className="bg-[#313338] flex-1">
