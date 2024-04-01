@@ -30,7 +30,7 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/Auth";
 import { Separator } from "@/components/ui/separator";
 
-const BASEURL = process.env.NEXT_PUBLIC_BASEURL;
+const baseURL = process.env.NEXT_PUBLIC_BASEURL;
 
 const page = () => {
   const auth = getAuth();
@@ -51,7 +51,7 @@ const page = () => {
     }
 
     try {
-      const response = await axios.post(`${BASEURL}/v1/auth/signin`, {
+      const response = await axios.post(`${baseURL}/v1/auth/signin`, {
         email: userData.email,
         password: userData.password,
       });

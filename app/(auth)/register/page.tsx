@@ -22,7 +22,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const BASEURL = process.env.NEXT_PUBLIC_BASEURL;
+const baseURL = process.env.NEXT_PUBLIC_BASEURL;
 
 const page = () => {
   const router = useRouter();
@@ -43,7 +43,7 @@ const page = () => {
     }
 
     try {
-      const response = await axios.post(`${BASEURL}/v1/auth/signup`, {
+      const response = await axios.post(`${baseURL}/v1/auth/signup`, {
         name: userData.name,
         email: userData.email,
         password: userData.password,
