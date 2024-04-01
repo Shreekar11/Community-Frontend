@@ -1,9 +1,10 @@
 import ServerSidebar from "@/components/navigation/server-sidebar";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import NavigationServers from "./navigation/navigation-servers";
+import NavigationServers from "../navigation/navigation-servers";
 
 const Sidebar = () => {
+  
   const userServers = [
     {
       id: '1',

@@ -5,14 +5,15 @@ import { useState } from "react";
 import { LoginForm } from "@/type";
 import { getAuth } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { signInWithPopup } from "firebase/auth";
 import { githubProvider, googleProvider } from "@/lib/firebase";
-import { IoLogoGithub } from "react-icons/io5";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 import loginImage from "@/public/img/login/login.png";
+import githubIcon from "@/public/img/login/github.png";
 
 // ui components
 import {
@@ -145,20 +146,25 @@ const page = () => {
           </CardFooter>
           <Separator className="h-[1px] lg:mb-6 bg-[#aaafbc] rounded-md w-[13rem] mx-auto" />
           <div className="flex flex-col justify-center items-center space-y-4 pb-4">
-            <div className="relative w-[80%]">
+            <div className="relative w-[80%] hover:cursor-pointer">
               <FcGoogle className="h-6 w-6 absolute top-[0.50rem] left-5 rounded-full" />
               <Button
                 onClick={handleGoogleSubmit}
-                className="w-full rounded-xl text-xs text-black pr-1 bg-[#ffffff] hover:bg-[#f5f5f5] font-semibold"
+                className="w-full rounded-xl text-xs text-black pr-1 bg-[#ffffff] hover:bg-[#e5e5e5]"
               >
                 Continue with Google
               </Button>
             </div>
-            <div className="relative w-[80%]">
-              <IoLogoGithub className="h-6 w-6 absolute top-[0.50rem] left-5 bg-black rounded-full" />
+            <div className="relative w-[80%] hover:cursor-pointer">
+              {/* <FaGithub className="h-6 w-6 absolute top-[0.50rem] left-5 bg-black rounded-full" /> */}
+              <Image
+                src={githubIcon}
+                alt="github-image"
+                className="h-6 w-6 absolute top-[0.50rem] left-5"
+              />
               <Button
                 onClick={handleGithubSubmit}
-                className="w-full rounded-xl text-xs text-black pr-1 bg-[#ffffff] hover:bg-[#f5f5f5] font-semibold"
+                className="w-full rounded-xl text-xs text-black pr-1 bg-[#ffffff] hover:bg-[#e5e5e5]"
               >
                 Continue with Github
               </Button>
