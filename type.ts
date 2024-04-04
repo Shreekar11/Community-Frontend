@@ -9,16 +9,12 @@ export type RegisterForm = {
   password: string;
 };
 export type UserData = {
-  name: string;
-  email: string;
-  password: string;
-  token: string;
-  createdAt: string;
-  expiresAt: string;
+  name: string | null;
+  email: string | null;
 };
 
 export type GoogleCredential = {
-  accesstoken: string;
+  token: string;
   user: {
     name: string;
     email: string;

@@ -20,10 +20,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     user: {
       name: "",
       email: "",
-      password: "",
-      token: "",
-      createdAt: "",
-      expiresAt: "",
     },
   });
 

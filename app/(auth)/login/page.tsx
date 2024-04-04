@@ -2,12 +2,13 @@
 
 import { toast } from "sonner";
 import { useState } from "react";
-import { LoginForm } from "@/type";
 import { getAuth } from "firebase/auth";
+import { useAuth } from "@/context/Auth";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { signInWithPopup } from "firebase/auth";
+import { LoginForm, UserCredential } from "@/type";
 import { githubProvider, googleProvider } from "@/lib/firebase";
 import axios from "axios";
 import Link from "next/link";
@@ -27,7 +28,6 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/context/Auth";
 import { Separator } from "@/components/ui/separator";
 
 const baseURL = process.env.NEXT_PUBLIC_BASEURL;
@@ -68,6 +68,15 @@ const page = () => {
   const handleGoogleSubmit = async () => {
     try {
       const response = await signInWithPopup(auth, googleProvider);
+      const token = await response.user.getIdToken();
+      const userCredential: UserCredential = {
+        token: token,
+        user: {
+          name: response.user.displayName,
+          email: response.user.email,
+        },
+      };
+      setUserAuthInfo(userCredential);
       toast.success("User sign in Successfully");
       router.push("/");
     } catch (error) {
@@ -78,6 +87,15 @@ const page = () => {
   const handleGithubSubmit = async () => {
     try {
       const response = await signInWithPopup(auth, githubProvider);
+      const token = await response.user.getIdToken();
+      const userCredential: UserCredential = {
+        token: token,
+        user: {
+          name: response.user.displayName,
+          email: response.user.email,
+        },
+      };
+      setUserAuthInfo(userCredential);
       toast.success("User sign in Successfully");
       router.push("/");
     } catch (error) {
