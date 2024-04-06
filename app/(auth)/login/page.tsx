@@ -104,9 +104,9 @@ const page = () => {
   };
 
   return (
-    <main className="bg-[#5865F2] flex justify-center items-center h-screen">
-      <Card className="w-3/4 sm:w-1/2 p-2 lg:p-8 rounded-xl bg-[#3f4146] text-white border border-[#313338] flex justify-center items-center">
-        <div className="lg:border-r lg:border-r-[#aaafbc] lg:pr-8">
+    <main className="bg-[url('/img/login/login-bg.png')] bg-cover flex justify-center items-center h-screen">
+      <Card className="w-3/4 sm:w-1/3 py-2 lg:py-4 rounded-xl bg-[#3f4146] text-white border border-[#313338] flex justify-center items-center">
+        <div className="">
           <CardHeader className="lg:mb-5 flex justify-center items-center ">
             <CardTitle className="mb-2">Login</CardTitle>
             <CardDescription className="text-sm text-center">
@@ -116,7 +116,7 @@ const page = () => {
           </CardHeader>
           <CardContent>
             <form>
-              <div className="grid w-full items-center gap-4">
+              <div className="lg:w-[25rem] grid items-center gap-4">
                 <div className="flex flex-col space-y-2">
                   <div className="">
                     <Label htmlFor="name">Email Address</Label>
@@ -162,10 +162,10 @@ const page = () => {
               </span>
             </p>
           </CardFooter>
-          <Separator className="h-[1px] lg:mb-6 bg-[#aaafbc] rounded-md w-[13rem] mx-auto" />
+          {/* <Separator className="h-[1px] lg:mb-6 bg-[#aaafbc] rounded-md w-[13rem] mx-auto" /> */}
           <div className="flex flex-col justify-center items-center space-y-4 pb-4">
             <div className="relative w-[80%] hover:cursor-pointer">
-              <FcGoogle className="h-6 w-6 absolute top-[0.50rem] left-5 rounded-full" />
+              <FcGoogle className="h-6 w-6 absolute top-[0.50rem] left-5 lg:left-[5rem] rounded-full" />
               <Button
                 onClick={handleGoogleSubmit}
                 className="w-full rounded-xl text-xs text-black pr-1 bg-[#ffffff] hover:bg-[#e5e5e5]"
@@ -178,7 +178,7 @@ const page = () => {
               <Image
                 src={githubIcon}
                 alt="github-image"
-                className="h-6 w-6 absolute top-[0.50rem] left-5"
+                className="h-6 w-6 absolute top-[0.50rem] left-5 lg:left-[5rem]"
               />
               <Button
                 onClick={handleGithubSubmit}
@@ -187,21 +187,6 @@ const page = () => {
                 Continue with Github
               </Button>
             </div>
-          </div>
-        </div>
-        <div className="lg:pl-8 hidden lg:block">
-          <div className="space-y-6 flex flex-col justify-center items-center">
-            <div className="text-center flex flex-col justify-center items-center font-bold text-3xl ">
-              {" "}
-              Explore<span className="text-[#7c87ff]">Communities!</span>
-            </div>
-            <Image
-              src={loginImage}
-              alt="login-image"
-              height={300}
-              width={300}
-              className=" border rounded-xl"
-            />
           </div>
         </div>
       </Card>

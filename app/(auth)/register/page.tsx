@@ -58,9 +58,9 @@ const page = () => {
   };
 
   return (
-    <main className="bg-[#5865F2] flex justify-center items-center h-screen">
-      <Card className="w-3/4 sm:w-1/2 p-2 lg:p-8 rounded-xl bg-[#3f4146] text-white border border-[#313338] flex justify-center items-center">
-        <div className="lg:border-r lg:border-r-[#aaafbc] lg:pr-8">
+    <main className="bg-[url('/img/login/login-bg.png')] bg-cover flex justify-center items-center h-screen">
+      <Card className="w-3/4 sm:w-1/3 py-2 lg:py-4 rounded-xl bg-[#3f4146] text-white border border-[#313338] flex justify-center items-center">
+        <div className="">
           <CardHeader className="mb-5 flex justify-center items-center ">
             <CardTitle className="mb-2">Register</CardTitle>
             <CardDescription className="text-sm text-center">
@@ -70,7 +70,7 @@ const page = () => {
           </CardHeader>
           <CardContent>
             <form>
-              <div className="grid w-full items-center gap-4">
+              <div className="lg:w-[25rem] grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-4">
                   <div className="">
                     <Label htmlFor="name">Full Name</Label>
@@ -129,18 +129,6 @@ const page = () => {
               </span>
             </p>
           </CardFooter>
-        </div>
-        <div className="md:pl-8 hidden lg:block">
-          <div className="space-y-6 flex flex-col justify-center items-center">
-            <div className="text-center font-bold text-3xl ">Build & Run <span className="text-[#7c87ff]">Communities</span></div>
-            <Image
-              src={registerImage}
-              alt="register-image"
-              height={300}
-              width={300}
-              className=" border rounded-xl"
-            />
-          </div>
         </div>
       </Card>
     </main>

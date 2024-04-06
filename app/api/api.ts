@@ -2,11 +2,11 @@ import axios from "axios";
 
 export const baseURL = process.env.NEXT_PUBLIC_BASEURL;
 
-const axiosInstance = axios.create({
+const api = axios.create({
   baseURL,
 });
 
-axiosInstance.interceptors.request.use(
+api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -21,4 +21,4 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-export default axiosInstance;
+export default api;
