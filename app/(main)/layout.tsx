@@ -20,14 +20,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="flex">
+        <main className="h-full">
           <AuthProvider>
-            <div className=" bg-[#2a2b2f] max-w-xs min-h-screen md:min-w-[20rem]">
+            <div className="hidden md:flex h-full w-[72px] z-30 flex-col fixed inset-y-0">
               <Sidebar />
             </div>
-            <div className="bg-[#313338] flex-1">
+            <div className="bg-[#313338] md:pl-[72px] h-screen">
               {children}
-              <Toaster position="top-right" richColors />
+              <Toaster
+                position="top-right"
+                richColors
+                closeButton
+                duration={2000}
+                pauseWhenPageIsHidden
+                visibleToasts={1}
+              />
             </div>
           </AuthProvider>
         </main>

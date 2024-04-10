@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="">
+        <main className="">
           <AuthProvider>{children}</AuthProvider>
           <Toaster
             position="top-right"
@@ -29,7 +29,7 @@ export default function RootLayout({
             pauseWhenPageIsHidden
             visibleToasts={1}
           />
-        </div>
+        </main>
       </body>
     </html>
   );
